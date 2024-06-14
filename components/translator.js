@@ -40,7 +40,7 @@ class Translator {
             }
         })
 
-        console.log(arr.join(' '))
+        // console.log(arr.join(' '))
         const spaced = Object.fromEntries(Object.entries(dict).filter(([key, val]) => key.includes(' ')))
         // console.log(spaced)
         let new_str = arr.join(' ')
@@ -48,7 +48,7 @@ class Translator {
         for (let x in spaced) {
             // console.log(x)
             if (new_str.includes(x)) {
-                console.log(x)
+                // console.log(x)
                 const match = new_str.match(x)
                 new_arr = new_str.split('')
                 new_arr.splice(match.index, match[0].length, `<span class="highlight">${spaced[x]}</span>`)
@@ -57,7 +57,6 @@ class Translator {
         }
         
         new_str = new_str.replace(/(\d+).(\d+)/g, '<span class="highlight">$1:$2</span>')
-        console.log(new_str)
         // str = new_arr.join(' ')
 
         return new_str;
@@ -82,14 +81,12 @@ class Translator {
         })
 
         const spaced = Object.fromEntries(Object.entries(dict).filter(([key, val]) => key.includes(' ')))
-        // console.log(spaced)
         let new_str = arr.join(' ')
         let new_arr = []
         for (let x in spaced) {
-            // console.log(x)
-            if (new_str.includes(x)) {
+            if (new_str.toLowerCase().includes(x)) {
                 // console.log(x)
-                const match = new_str.match(x)
+                const match = new_str.toLowerCase().match(x)
                 new_arr = new_str.split('')
                 new_arr.splice(match.index, match[0].length, `<span class="highlight">${spaced[x]}</span>`)
                 new_str = new_arr.join('')
@@ -98,7 +95,7 @@ class Translator {
 
         new_str = new_str.replace(/(\d+):(\d+)/g, '<span class="highlight">$1.$2</span>')
         // str = new_arr.join(' ')
-        console.log(new_str)
+        // console.log(new_str)
         return new_str
 
     }
